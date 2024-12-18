@@ -58,7 +58,8 @@ public class PointController {
     public UserPoint use(
             @PathVariable long id,
             @RequestBody long amount
-    ) {
-        return new UserPoint(0, 0, 0);
+    ) throws Exception {
+        long currentTime = System.currentTimeMillis();
+        return pointService.useUserPoints(id, amount, currentTime);
     }
 }
