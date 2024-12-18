@@ -2,11 +2,14 @@ package io.hhplus.tdd.point.service;
 
 import io.hhplus.tdd.database.PointHistoryTable;
 import io.hhplus.tdd.database.UserPointTable;
+import io.hhplus.tdd.point.PointHistory;
 import io.hhplus.tdd.point.PointMinMax;
 import io.hhplus.tdd.point.TransactionType;
 import io.hhplus.tdd.point.UserPoint;
 import io.hhplus.tdd.point.validator.ParameterValidator;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PointService {
@@ -92,5 +95,30 @@ public class PointService {
 
         // 6. 업데이트된 포인트 반환
         return UsedUserPointInfo;
+    }
+
+    /**
+     * User Point 조회
+     * @param id 유저 ID
+     * @return 유저 포인트 정보
+     */
+    public UserPoint getUserPoint(long id) {
+        // 0. 요청 id가 음수인지 확인
+        parameterValidator.validateId(id);
+
+        // 1. 유저 포인트 반환
+        return userPointTable.selectById(id);
+    }
+    /**
+     * User Point History 조회
+     * @param id 유저 ID
+     * @return 유저 포인트 이력 리스트
+     */
+    public List<PointHistory> getUserPointHistoryList(long id) {
+        // 0. 요청 id가 음수인지 확인
+        parameterValidator.validateId(id);
+
+        // 1. 유저 포인트 반환
+        return pointHistoryTable.selectAllByUserId(id);
     }
 }

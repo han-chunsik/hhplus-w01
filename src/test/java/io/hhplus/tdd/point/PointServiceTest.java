@@ -31,17 +31,11 @@ class PointServiceTest {
     @Mock
     private PointHistoryTable pointHistoryTable;
 
-    private long invalidId;
     private long validId;
-    private long invalidAmount;
-    private long validAmount;
 
     @BeforeEach
     void setUp() {
-        invalidId = -1L;
-        invalidAmount = -100L;
-        validId = 10L;
-        validAmount = 100L;
+        validId = 1L;
     }
 
     @Nested
