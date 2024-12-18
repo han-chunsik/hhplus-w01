@@ -34,10 +34,6 @@ Thumbs.db
 .classpath
 .settings/
 
-# JUnit files
-test-classes/
-test-outputs/
-
 # JetBrains Rider
 .idea/
 *.sln
