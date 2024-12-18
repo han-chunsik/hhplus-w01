@@ -177,8 +177,6 @@ class PointServiceTest {
                 // When
                 UserPoint result = pointService.useUserPoints(validId, useAmount, currentTime);
 
-                System.out.println(result);
-
                 // Then
                 assertNotNull(result);
                 assertEquals(validId, result.id());
