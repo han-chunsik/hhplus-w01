@@ -1,7 +1,6 @@
 package io.hhplus.tdd.point;
 
 import io.hhplus.tdd.point.service.PointService;
-import io.hhplus.tdd.point.validator.ParameterValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +14,9 @@ public class PointController {
     private static final Logger log = LoggerFactory.getLogger(PointController.class);
 
     private final PointService pointService;
-    private final ParameterValidator parameterValidator;
 
-    public PointController(PointService pointService, ParameterValidator parameterValidator) {
+    public PointController(PointService pointService) {
         this.pointService = pointService;
-        this.parameterValidator = parameterValidator;
     }
 
     /**
@@ -51,10 +48,6 @@ public class PointController {
             @RequestBody long amount
     ) throws Exception {
         long currentTime = System.currentTimeMillis();
-        // 유효성 검사
-        parameterValidator.validateId(id);
-        parameterValidator.validateAmount(amount);
-
         return pointService.chargeUserPoints(id, amount, currentTime);
     }
 
