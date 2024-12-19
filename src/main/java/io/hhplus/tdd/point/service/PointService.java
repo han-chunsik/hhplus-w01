@@ -34,7 +34,7 @@ public class PointService {
      * @param updateMillis 타임스탬프
      * @return 충전 후 포인트 정보
      */
-    public UserPoint chargeUserPoints(long id, long amount, long updateMillis) throws Exception {
+    public UserPoint chargeUserPoints(long id, long amount, long updateMillis) throws IllegalArgumentException {
         // 동시성 구현: 유저 별 락 객체 생성
         ReentrantLock lock = userLocks.computeIfAbsent(id, k -> new ReentrantLock());
 
@@ -51,13 +51,13 @@ public class PointService {
 
             // 2. 충전 요청 포인트가 최소 포인트 이상인지 확인
             if (amount < PointMinMax.MIN.getPoint()) {
-                throw new Exception("충전 포인트는 " + PointMinMax.MIN.getPoint() + "포인트 이상이여야 합니다.");
+                throw new IllegalArgumentException("충전 포인트는 " + PointMinMax.MIN.getPoint() + "포인트 이상이여야 합니다.");
             }
 
             // 3. 포인트 충전 시 최대 잔고를 넘는지 확인
             long chargedPoint = currentPoint + amount;
             if (chargedPoint > PointMinMax.MAX.getPoint()) {
-                throw new Exception("충전 후 포인트가" + PointMinMax.MAX.getPoint() + "를 포인트를 초과할 수 없습니다.");
+                throw new IllegalArgumentException("충전 후 포인트가" + PointMinMax.MAX.getPoint() + "를 포인트를 초과할 수 없습니다.");
             }
 
             // 4. 포인트 충전
@@ -80,7 +80,7 @@ public class PointService {
      * @param updateMillis 타임스탬프
      * @return 사용 후 포인트 정보
      */
-    public UserPoint useUserPoints(long id, long amount, long updateMillis) throws Exception {
+    public UserPoint useUserPoints(long id, long amount, long updateMillis) throws IllegalArgumentException {
         // 동시성 구현: 유저 별 락 객체 생성
         ReentrantLock lock = userLocks.computeIfAbsent(id, k -> new ReentrantLock());
 
@@ -97,12 +97,12 @@ public class PointService {
 
             // 2. 사용 요청 포인트가 최소 포인트 이상인지 확인
             if (amount < PointMinMax.MIN.getPoint()) {
-                throw new Exception("사용 포인트는 " + PointMinMax.MIN.getPoint() + "포인트 이상이여야 합니다.");
+                throw new IllegalArgumentException("사용 포인트는 " + PointMinMax.MIN.getPoint() + "포인트 이상이여야 합니다.");
             }
 
             // 3. 포인트 사용 금액이 현재 잔고를 넘는지 확인
             if (currentPoint < amount) {
-                throw new Exception("현재 보유한 포인트는" + currentPoint + "포인트 입니다. 보유 포인트보다 많은 포인트를 사용할 수 없습니다.");
+                throw new IllegalArgumentException("현재 보유한 포인트는" + currentPoint + "포인트 입니다. 보유 포인트보다 많은 포인트를 사용할 수 없습니다.");
             }
 
             // 4. 포인트 사용

@@ -60,7 +60,7 @@ class PointServiceTest {
                 when(userPointTable.selectById(validId)).thenReturn(new UserPoint(validId, existingPoint, currentTime));
 
                 // When & Then
-                assertThrows(Exception.class, () -> pointService.chargeUserPoints(validId, chargeAmount, currentTime));
+                assertThrows(IllegalArgumentException.class, () -> pointService.chargeUserPoints(validId, chargeAmount, currentTime));
             }
 
             @Test
@@ -77,7 +77,7 @@ class PointServiceTest {
                 when(userPointTable.selectById(validId)).thenReturn(new UserPoint(validId, existingPoint, currentTime));
 
                 // When & Then
-                assertThrows(Exception.class, () -> pointService.chargeUserPoints(validId, chargeAmount, currentTime));
+                assertThrows(IllegalArgumentException.class, () -> pointService.chargeUserPoints(validId, chargeAmount, currentTime));
             }
         }
 
@@ -87,7 +87,7 @@ class PointServiceTest {
 
             @Test
             @DisplayName("기존 1000포인트를 가지고 있을때, 500 포인트를 충전하면 성공한다.")
-            void chargeUserPointsSuccess1() throws Exception {
+            void chargeUserPointsSuccess1() {
                 // Given
                 long chargeAmount = 500L;
                 long existingPoint = 1000L;
@@ -133,7 +133,7 @@ class PointServiceTest {
                 when(userPointTable.selectById(validId)).thenReturn(new UserPoint(validId, existingPoint, currentTime));
 
                 // When & Then
-                assertThrows(Exception.class, () -> pointService.useUserPoints(validId, useAmount, currentTime));
+                assertThrows(IllegalArgumentException.class, () -> pointService.useUserPoints(validId, useAmount, currentTime));
             }
 
             @Test
@@ -150,7 +150,7 @@ class PointServiceTest {
                 when(userPointTable.selectById(validId)).thenReturn(new UserPoint(validId, existingPoint, currentTime));
 
                 // When & Then
-                assertThrows(Exception.class, () -> pointService.useUserPoints(validId, useAmount, currentTime));
+                assertThrows(IllegalArgumentException.class, () -> pointService.useUserPoints(validId, useAmount, currentTime));
             }
         }
 
@@ -160,7 +160,7 @@ class PointServiceTest {
 
             @Test
             @DisplayName("기존 1000포인트를 가지고 있을때, 500 포인트를 사용하면 성공한다.")
-            void useUserPointsSuccess1() throws Exception {
+            void useUserPointsSuccess1() {
                 // Given
                 long useAmount = 500L;
                 long existingPoint = 1000L;
