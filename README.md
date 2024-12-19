@@ -86,7 +86,6 @@ ReentrantLock은 유저별 요청 순차성 보장을 위해, ConcurrentHashMap�
 ## 구현
 ### 락 객체 관리
 - 유저의 ID를 키로, ReentrantLock을 값으로 관리하는 ConcurrentHashMap<Long, ReentrantLock>을 사용.
-- computeIfAbsent 메서드를 통해 유저 ID에 해당하는 락 객체가 없으면 새로 생성하여 추가.
 
 ### 유저별 락을 통한 순차 처리
 - 각 유저의 요청은 락을 얻은 후 순차적으로 처리되며, 작업이 끝나면 락을 해제 (lock.unlock()).
