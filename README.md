@@ -1,11 +1,8 @@
+📃[Wiki](https://github.com/han-chunsik/hhplus-w01/wiki)   
+---
 # 1주차 과제
 ## 주제: TDD로 개발하기
 > 일정: 2024년 12월 14일 ~ 20일
-
-[Wiki](https://github.com/han-chunsik/hhplus-w01/wiki)  
-[과제 개요](https://github.com/han-chunsik/hhplus-w01/wiki/%EA%B3%BC%EC%A0%9C-%EA%B0%9C%EC%9A%94)  
-[프로젝트 템플릿 분석](https://github.com/han-chunsik/hhplus-w01/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%B6%84%EC%84%9D)  
-[요건 정의](https://github.com/han-chunsik/hhplus-w01/wiki/%EC%9A%94%EA%B1%B4-%EC%A0%95%EC%9D%98)
 ---
 # 동시성 제어 방식에 대한 분석 및 보고서
 
