@@ -76,7 +76,11 @@
 ### ReentrantLock + ConcurrentHashMap
 > 순차성 보장은 락으로, 락 관리는 해시맵으로
 
-ReentrantLock은 유저별 요청 순차성 보장을 위해, ConcurrentHashMap은 유저별 락 객체 관리 및 독립적인 요청 처리를 위해 함께 사용
+ReentrantLock으로 생성된 여러 락들의 작업 간 충돌을 방지하려면 락 객체를 저장하고 관리할 공간이 필요한데, ConcurrentHashMap으로 이를 효과적으로 관리 할 수 있음  
+ConcurrentHashMap은 락을 키별로 저장하고 관리할 수 있고,  
+내부적으로 데이터를 세그먼트 단위로 나눠 처리하므로, 특정 키 작업이 다른 작업에 영향을 덜 미치도록 함  
+
+따라서 ReentrantLock은 유저별 요청 순차성 보장을 위해, ConcurrentHashMap은 유저별 락 객체 관리 및 독립적인 요청 처리를 위해 함께 사용
 - 유저 별 요청 순차성 보장을 위해 ReentrantLock로 유저별 락 생성
 - 여러 유저의 요청을 독립적으로 처리하기 위해 ConcurrentHashMap을 사용하여 ReentrantLock 객체 관리
 
